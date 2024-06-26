@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://e5w6j80j2aw0"]
+
+[ext_resource type="Texture2D" uid="uid://dgrtwkwur2own" path="res://icon.svg" id="2_m73jt"]
+[ext_resource type="PackedScene" uid="uid://c8iq1anpo6g08" path="res://Scenes/bat.tscn" id="3_gd5s3"]
+[ext_resource type="PackedScene" uid="uid://bagfktkm12mh8" path="res://Scenes/jump_pad.tscn" id="4_dafsm"]
+[ext_resource type="PackedScene" uid="uid://djgn3etabul2c" path="res://Scenes/new_player.tscn" id="4_m8n6o"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8sxai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq41c"]
+size = Vector2(125, 351)
+
+[node name="World" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 68)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(40, 32)
+scale = Vector2(10.1563, 0.5)
+texture = ExtResource("2_m73jt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_8sxai")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(607, 56)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(0, -161)
+scale = Vector2(1, 2.79688)
+texture = ExtResource("2_m73jt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0.5, -160.5)
+shape = SubResource("RectangleShape2D_jq41c")
+
+[node name="Bat Collision" type="StaticBody2D" parent="."]
+position = Vector2(69, -27)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bat Collision"]
+visible = false
+polygon = PackedVector2Array(481, 86, -672, 86, -676, -395, -381, -505, 45, -515, 315, -514, 563, -334, 486, -249, 480, 51, 480, 76, 480, 83, 628, 96, 625, -355, 507, -597, 189, -657, -259, -639, -663, -599, -811, -351, -819, -149, -795, 61, -761, 257, -387, 227, 67, 253, 489, 201, 484, 150)
+
+[node name="Bat" parent="." instance=ExtResource("3_gd5s3")]
+position = Vector2(211, -20)
+
+[node name="Bat2" parent="." instance=ExtResource("3_gd5s3")]
+position = Vector2(160, 4)
+
+[node name="JumpPad" parent="." instance=ExtResource("4_dafsm")]
+position = Vector2(122, 62)
+
+[node name="NewPlayer" parent="." instance=ExtResource("4_m8n6o")]
